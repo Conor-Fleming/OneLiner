@@ -30,5 +30,13 @@ func main() {
 func CompressExtension(input []byte) []byte {
 	input = []byte(strings.Replace(string(input), "\n", " ", -1))
 	input = []byte(strings.Replace(string(input), "\r", "", -1))
+
+	//Use Regex
+	//remove space from right side of '{'____ and left side of ____'}'
+
+	//Positive Lookahead regex \s(?=[^}\s]*) (matches first space behind '}')
+
+	//\s(?=[])
+
 	return input
 }
