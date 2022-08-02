@@ -1,27 +1,14 @@
 package main
 
 import (
+	"log"
 	"os"
 )
 
 func main() {
-	ipfile, err := os.Open("test.txt")
+	input := []byte("test test test test \n test again")
+	err := os.WriteFile("result.txt", input, 0777)
 	if err != nil {
-		panic(err)
+		log.Fatalf("%v", err)
 	}
-	defer func() {
-		if err := ipfile.Close(); err != nil {
-			panic(err)
-		}
-	}()
-
-	opfile, err := os.Create("result.txt")
-	if err != nil {
-		panic(err)
-	}
-	defer func() {
-		if err := opfile.Close(); err != nil {
-			panic(err)
-		}
-	}()
 }
