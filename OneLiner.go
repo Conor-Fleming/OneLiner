@@ -8,7 +8,11 @@ import (
 )
 
 func main() {
-	content, err := ioutil.ReadFile("test.txt")
+	// file to be read and converted to one line will be given as a command line argument
+	inputFile := os.Args[1]
+
+	//need to setup so you can input text file as command line argument
+	content, err := ioutil.ReadFile(inputFile)
 	if err != nil {
 		log.Fatalf("Error while reading %v", err)
 	}
