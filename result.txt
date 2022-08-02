@@ -1,2 +1,1 @@
-test test test test 
- test again
+"" n lastFilledTTR,filledTodayTTR,output s lastFilledTTR=$$Main^SNETLINK(patID,$$zoDTap^EAXLIB2("EPT",patID,25231),"EPT25231")  s lastFilledTTR=$JUSTIFY(lastFilledTTR/365,0,1) s another line that should be concatenated to the previous 
