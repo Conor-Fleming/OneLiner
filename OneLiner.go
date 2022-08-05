@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -28,21 +27,19 @@ func main() {
 	content.Close()
 
 	output := ""
-	for _, val := range lines {
+	for i, val := range lines {
 		val = strings.TrimSpace(val)
 		check := val[len(val)-1:]
-		if check != "{ " {
-			val += " "
+		if i+1 < len(lines) {
+			if lines[i+1] != "}" && check != "{" {
+				val += " "
+			}
 		}
 		output += val
 	}
-	fmt.Println(output)
 
-	/*wrting to file with reulting string after processing
-	err = os.WriteFile("result.txt", input, 0777)
+	err = os.WriteFile("result.txt", []byte(output), 0777)
 	if err != nil {
 		log.Fatalf("%v", err)
-	}*/
-
-	//return input
+	}
 }
