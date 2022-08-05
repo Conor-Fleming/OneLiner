@@ -21,20 +21,20 @@ func main() {
 	fileScanner.Split(bufio.ScanLines)
 
 	var lines []string
-	var output string
+
 	for fileScanner.Scan() {
 		lines = append(lines, fileScanner.Text())
 	}
 	content.Close()
 
+	output := ""
 	for _, val := range lines {
-
-		if val[len(val)-1] == '{' {
-			output += strings.TrimSpace(val)
-		} else {
-			output += " "
-			output += val
+		val = strings.TrimSpace(val)
+		check := val[len(val)-1:]
+		if check != "{ " {
+			val += " "
 		}
+		output += val
 	}
 	fmt.Println(output)
 
