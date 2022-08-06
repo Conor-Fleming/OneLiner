@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"log"
 	"os"
-	"strings"
 )
 
 func main() {
@@ -26,17 +25,7 @@ func main() {
 	}
 	content.Close()
 
-	output := ""
-	for i, val := range lines {
-		val = strings.TrimSpace(val)
-		check := val[len(val)-1:]
-		if i+1 < len(lines) {
-			if lines[i+1] != "}" && check != "{" {
-				val += " "
-			}
-		}
-		output += val
-	}
+	output := conversion(lines)
 
 	err = os.WriteFile("result.txt", []byte(output), 0777)
 	if err != nil {
