@@ -28,14 +28,16 @@ func ToOne(lines []string) string {
 
 func ToMany(lines []string) string {
 	var checker int = 0
-	output := ``
+	var output string
 	for _, val := range lines {
 		for _, char := range val {
 			if char == ' ' {
 				checker++
 			}
 			if checker == 2 {
-				char += '\n'
+				output += string(char) + "\n"
+				checker = 0
+				continue
 			}
 			output += string(char)
 		}
