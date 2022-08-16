@@ -1,8 +1,10 @@
 package main
 
-import "strings"
+import (
+	"strings"
+)
 
-func conversion(input []string) string {
+func Conversion(input []string) string {
 	if len(input) == 1 {
 		return ToMany(input)
 	}
@@ -25,5 +27,18 @@ func ToOne(lines []string) string {
 }
 
 func ToMany(lines []string) string {
-	return ""
+	var checker int = 0
+	output := ``
+	for _, val := range lines {
+		for _, char := range val {
+			if char == ' ' {
+				checker++
+			}
+			if checker == 2 {
+				char += '\n'
+			}
+			output += string(char)
+		}
+	}
+	return output
 }

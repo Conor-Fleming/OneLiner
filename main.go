@@ -15,17 +15,17 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error while reading %v", err)
 	}
+
 	fileScanner := bufio.NewScanner(content)
 	fileScanner.Split(bufio.ScanLines)
 
 	var lines []string
-
 	for fileScanner.Scan() {
 		lines = append(lines, fileScanner.Text())
 	}
 	content.Close()
 
-	output := conversion(lines)
+	output := Conversion(lines)
 
 	err = os.WriteFile("result.txt", []byte(output), 0777)
 	if err != nil {
