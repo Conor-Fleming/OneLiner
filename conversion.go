@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strings"
 )
 
@@ -27,20 +28,32 @@ func ToOne(lines []string) string {
 }
 
 func ToMany(lines []string) string {
-	var checker int = 0
 	var output string
 	for _, val := range lines {
-		for _, char := range val {
-			if char == ' ' {
-				checker++
+		for i, char := range val {
+			if char == 's' && val[i+1] == ' ' && val[i-1] == ' ' {
+				output += "\n" + string(char)
+				continue
 			}
-			if checker == 2 {
-				output += string(char) + "\n"
-				checker = 0
+			if char == 'i' && val[i+1] == ' ' && val[i-1] == ' ' {
+				output += "\n" + string(char)
+				continue
+			}
+			if char == 'n' && val[i+1] == ' ' {
+				output += "\n" + string(char)
+				continue
+			}
+			if char == '{' {
+				output += string(char) + "\n" + "\t"
+				continue
+			}
+			if char == '}' {
+				output += "\n" + string(char)
 				continue
 			}
 			output += string(char)
 		}
 	}
+	fmt.Println(output)
 	return output
 }
