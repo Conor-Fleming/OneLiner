@@ -31,27 +31,28 @@ func ToMany(lines []string) string {
 	var output string
 	for _, val := range lines {
 		for i, char := range val {
-			if char == 's' && val[i+1] == ' ' && val[i-1] == ' ' {
+			switch {
+			case char == 's' && val[i+1] == ' ' && val[i-1] == ' ':
 				output += "\n" + string(char)
-				continue
-			}
-			if char == 'i' && val[i+1] == ' ' && val[i-1] == ' ' {
+
+			case char == 'i' && val[i+1] == ' ' && val[i-1] == ' ':
 				output += "\n" + string(char)
-				continue
-			}
-			if char == 'n' && val[i+1] == ' ' {
+
+			case char == 'n' && val[i+1] == ' ':
 				output += "\n" + string(char)
-				continue
-			}
-			if char == '{' {
+
+			case char == 'd' && val[i+1] == ' ':
+				output += "\n" + string(char)
+
+			case char == '{':
 				output += string(char) + "\n" + "\t"
-				continue
-			}
-			if char == '}' {
+
+			case char == '}':
 				output += "\n" + string(char)
-				continue
+
+			default:
+				output += string(char)
 			}
-			output += string(char)
 		}
 	}
 	fmt.Println(output)
