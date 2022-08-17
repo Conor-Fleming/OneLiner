@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -55,6 +54,5 @@ func ToMany(lines []string) string {
 			}
 		}
 	}
-	fmt.Println(output)
 	return output
 }
