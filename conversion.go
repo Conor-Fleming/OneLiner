@@ -29,24 +29,26 @@ func ToOne(lines []string) string {
 func ToMany(lines []string) string {
 	var output string
 	for _, val := range lines {
+		//tabCount := 0
+		//var tabs string
 		for i, char := range val {
-			switch {
-			case char == 's' && val[i+1] == ' ' && val[i-1] == ' ':
-				output += "\n" + string(char)
-
-			case char == 'i' && val[i+1] == ' ' && val[i-1] == ' ':
-				output += "\n" + string(char)
-
-			case char == 'n' && val[i+1] == ' ':
-				output += "\n" + string(char)
-
-			case char == 'd' && val[i+1] == ' ':
-				output += "\n" + string(char)
-
-			case char == '{':
+			if val[i+1] == ' ' && val[i-1] == ' ' {
+				switch char {
+				case 's', 'i':
+					output += "\n" + string(char)
+				}
+			}
+			if val[i+1] == ' ' {
+				switch char {
+				case 'n', 'd', 'f':
+					output += "\n" + string(char)
+				}
+			}
+			switch char {
+			case '{':
 				output += string(char) + "\n" + "\t"
 
-			case char == '}':
+			case '}':
 				output += "\n" + string(char)
 
 			default:
