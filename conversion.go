@@ -29,30 +29,52 @@ func ToOne(lines []string) string {
 func ToMany(lines []string) string {
 	var output string
 	for _, val := range lines {
+		tabCount := 0
 		for i, char := range val {
 			switch {
 			case char == 's' && val[i+1] == ' ' && val[i-1] == ' ':
-				output += "\n" + string(char)
+				output += "\n"
+				output = addTabs(output, tabCount, string(char))
 
 			case char == 'i' && val[i+1] == ' ' && val[i-1] == ' ':
-				output += "\n" + string(char)
+				output += "\n"
+				output = addTabs(output, tabCount, string(char))
+
+			case char == 'f' && val[i+1] == ' ':
+				output += "\n"
+				output = addTabs(output, tabCount, string(char))
 
 			case char == 'n' && val[i+1] == ' ':
-				output += "\n" + string(char)
+				output += "\n"
+				output = addTabs(output, tabCount, string(char))
 
 			case char == 'd' && val[i+1] == ' ':
-				output += "\n" + string(char)
+				output += "\n"
+				output = addTabs(output, tabCount, string(char))
 
 			case char == '{':
-				output += string(char) + "\n" + "\t"
+				tabCount++
+				output += string(char) + "\n"
+				output = addTabs(output, tabCount, string(char))
 
 			case char == '}':
-				output += "\n" + string(char)
-
+				tabCount--
+				output += "\n"
+				output = addTabs(output, tabCount, string(char))
 			default:
 				output += string(char)
 			}
 		}
+	}
+	return output
+}
+
+func addTabs(output string, tabCount int, char string) string {
+	for i := 0; i < tabCount; i++ {
+		output += "\t"
+	}
+	if char != "{" {
+		output += char
 	}
 	return output
 }
