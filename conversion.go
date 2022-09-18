@@ -31,24 +31,28 @@ func ToMany(lines []string) string {
 	for _, val := range lines {
 		tabCount := 0
 		for i, char := range val {
+			if i == 0 {
+				output += string(char)
+				continue
+			}
 			switch {
-			case char == 's' && val[i+1] == ' ' && val[i-1] == ' ':
+			case (char == 's' && val[i+1] == ' ' && val[i-1] == ' '):
 				output += "\n"
 				output = addTabs(output, tabCount, string(char))
 
-			case char == 'i' && val[i+1] == ' ' && val[i-1] == ' ':
+			case (char == 'i' && val[i+1] == ' ' && val[i-1] == ' '):
 				output += "\n"
 				output = addTabs(output, tabCount, string(char))
 
-			case char == 'f' && val[i+1] == ' ':
+			case (char == 'f' && val[i+1] == ' ' && val[i-1] == ' '):
 				output += "\n"
 				output = addTabs(output, tabCount, string(char))
 
-			case char == 'n' && val[i+1] == ' ':
+			case (char == 'n' && val[i+1] == ' ' && val[i-1] == ' '):
 				output += "\n"
 				output = addTabs(output, tabCount, string(char))
 
-			case char == 'd' && val[i+1] == ' ':
+			case (char == 'd' && val[i+1] == ' ' && val[i-1] == ' '):
 				output += "\n"
 				output = addTabs(output, tabCount, string(char))
 
