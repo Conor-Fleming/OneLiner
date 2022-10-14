@@ -3,9 +3,9 @@
 ## About
 One liner is a program to make more efficient the process of writing custom M extensions to run in Epic EMR software. When given a text file OneLiner will return a new txt file with the contents formatted into One line for use as an Extension in the Epic application. In the case that you give a text file that is already in "OneLiner" format it will return a text file with the contents in multiple lines, tabbed and pretty.
 
-Project status: Working
+### Project status: 
+Build passing
     
-
 ## Installation and Use
 Clone Github Repo: https://github.com/Conor-Fleming/OneLiner
 Build and run
